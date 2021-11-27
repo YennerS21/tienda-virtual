@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    
+    <!-- vue js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="https://unpkg.com/vuex@3.6.2/dist/vuex.js"></script>
+    <!-- componentes creados-->
+    <script src="componentes/barra-navegacion.js"></script>
+    <script src="componentes/contenido-pagina.js"></script>
+    <script src="componentes/contenido-adicional.js"></script>
+    <script src="componentes/footer.js"></script>
+
+    <title>MiniTienda virtual</title>
+</head>
+<body>
+    <div id="app" class="container">
+        <barra-navegacion></barra-navegacion>
+        <contenido-pagina></contenido-pagina>
+        <contenido-adicional ></contenido-adicional>
+        <pie-pagina></pie-pagina>
+    </div>
+
+</body>
+</html>
+
+
+<script>
+
+    const store = new Vuex.Store({
+        state:{
+            carrito:[],
+            articulos: [
+                {id:01, nombre:'Mouse', precio:100},
+                {id:02, nombre:'Teclado', precio:200},
+                {id:03, nombre:'USB-32GB', precio:50},
+                {id:04, nombre:'USB-64GB', precio:90},
+                {id:05, nombre:'Audifonos', precio:150},
+                {id:06, nombre:'Tripoide', precio:300},
+                {id:07, nombre:'Palo selfie', precio:50},
+                {id:08, nombre:'Parlante', precio:400},
+            ],
+        },
+        
+    });
+
+    const app = new Vue({
+        store,
+        el: "#app",
+    });
+
+</script>
