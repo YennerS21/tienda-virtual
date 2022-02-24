@@ -3,6 +3,7 @@ Vue.component('contenido-pagina', {
     `
         <div id="contenido-pagina" class="float-start " style="width:80%">
             <h1> {{ titulo }}</h1>
+            <h2> </h2>
             <div id="articulos">
                     <div v-for="articulo of articulos" class="d-inline-block m-2 card" style="width: 8rem;">
                             <div class="card-body" >
@@ -12,6 +13,7 @@ Vue.component('contenido-pagina', {
                                 <a class="btn btn-dark" @click="agregarProducto">+</a>
                             </div>
                     </div>
+                    
             </div>
         </div>
     `,
@@ -19,36 +21,45 @@ Vue.component('contenido-pagina', {
         return{
             titulo: "Productos",
             id:false,
-            carrito: []
         }
 
     },
     methods: {
         agregarProducto(e){
-            let producto = e.target.parentElement;
-            let precio = producto.children[2].innerText;
+            let elemento = e.target.parentElement;
             
+            let precio = elemento.children[2].innerText;
             precio = precio.split('');
-            
             if (precio[0]!== Number ) {
                 let limpiar = precio.shift();
+                precio = Number(precio.join(''));
             }
-            
-            precio = Number(precio.join(''));
-            
-            productoNuevo = new Object({
-                id:producto.children[0].innerText,
-                nombre:producto.children[1].innerText,
+
+            const producto = new Object({
+                id:Number(elemento.children[0].innerText),
+                nombre:elemento.children[1].innerText,
                 precio,
+                cantidad:0,
             });
-            this.carrito.push(productoNuevo);
-            console.log(this.carrito);
+            //Verificamos si el array esta vacio y agregamos el 1er elemento
+            if (this.carrito.length === 0 ) {
+                this.carrito.push(producto);
+                return;
+            }
+            //Validamos si el arreglo tiene mas de una posision
+            if (this.carrito.length>0 ) {
+                for(item of this.carrito){
+                    //comparamos cada item de carrito
+                    //si ya existe el item aumentamos la cantidad
+                    if (item.id===producto.id) {
+                        return
+                    }
+                }
+            }
+            this.carrito.push(producto);
         },
     },
     computed:{
-        ...Vuex.mapState(['articulos'])
+        ...Vuex.mapState(['articulos','sms','carrito']),
     },
-    actions:{
-        ...Vuex.mapActions(['agregarProducto'])
-    }
 })

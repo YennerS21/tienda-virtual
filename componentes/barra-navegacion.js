@@ -5,7 +5,7 @@ Vue.component('barra-navegacion', {
             <header class="" >
                 <nav class="nav nav-pills">
                     <span class="p-1">MINITiendaVirtual</span>
-                    <span class="form-button nav-link m-3" v-for="item of menu" @click="mostrar">
+                    <span class="form-button nav-link m-3" v-for="item of menu" @click="mostrarModal">
                         {{ item.text }}
                     </span>
                 </nav>
@@ -23,7 +23,7 @@ Vue.component('barra-navegacion', {
         }
     },
     methods: {
-        mostrar(){
+        mostrarModal(){
             console.log("Lista de compras");
         }
     },

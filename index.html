@@ -12,6 +12,7 @@
     <script src="https://unpkg.com/vuex@3.6.2/dist/vuex.js"></script>
     <!-- componentes creados-->
     <script src="componentes/barra-navegacion.js"></script>
+    <script src="componentes/carrito.js"></script>
     <script src="componentes/contenido-pagina.js"></script>
     <script src="componentes/contenido-adicional.js"></script>
     <script src="componentes/footer.js"></script>
@@ -23,6 +24,7 @@
         <barra-navegacion></barra-navegacion>
         <contenido-pagina></contenido-pagina>
         <contenido-adicional ></contenido-adicional>
+        <carrito></carrito>
         <pie-pagina></pie-pagina>
     </div>
 
@@ -36,16 +38,23 @@
         state:{
             carrito:[],
             articulos: [
-                {id:01, nombre:'Mouse', precio:100},
-                {id:02, nombre:'Teclado', precio:200},
-                {id:03, nombre:'USB-32GB', precio:50},
-                {id:04, nombre:'USB-64GB', precio:90},
-                {id:05, nombre:'Audifonos', precio:150},
-                {id:06, nombre:'Tripoide', precio:300},
-                {id:07, nombre:'Palo selfie', precio:50},
-                {id:08, nombre:'Parlante', precio:400},
+                {id:01, nombre:'Mouse', precio:100, cantidad:100},
+                {id:02, nombre:'Teclado', precio:200, cantidad:50},
+                {id:03, nombre:'USB-32GB', precio:50, cantidad:80},
+                {id:04, nombre:'USB-64GB', precio:90, cantidad:10},
+                {id:05, nombre:'Audifonos', precio:150, cantidad:50},
+                {id:06, nombre:'Tripoide', precio:300, cantidad:80},
+                {id:07, nombre:'Palo selfie', precio:50, cantidad:20},
+                {id:08, nombre:'Parlante', precio:400, cantidad:50},
             ],
         },
+        mutations: {
+            mostrarModal(state){
+                $('#myModal').on('shown.bs.modal', function () {
+                $('#myInput').trigger('focus')
+            })
+            }
+        }
         
     });
 
